@@ -42,6 +42,9 @@ COPY etc /etc
 COPY entrypoint.sh /entrypoint.sh
 
 VOLUME ["/var/www"]
+
+RUN chown -R www-data:www-data /var/www
+
 EXPOSE 80
 
 ENTRYPOINT ["/entrypoint.sh"]
