@@ -7,6 +7,7 @@ services:
 
 before_install:
   - docker images
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - cd base && docker build -t dvsoftware/base .
   - cd ../web && docker build -t dvsoftware/web .
   - cd ../web-oro && docker build -t dvsoftware/web-oro .
@@ -21,5 +22,8 @@ before_install:
   
 script:
   - docker ps -a
+  - docker push dvsoftware/base
+  - docker push dvsoftware/web
+  - docker push dvsoftware/web-oro
 
   
