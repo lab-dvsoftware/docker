@@ -1,0 +1,22 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+before_install:
+  - cd base && docker build -t dvsoftware/base .
+  - cd web && docker build -t dvsoftware/web .
+  - cd web-oro && docker build -t dvsoftware/web-oro .
+  
+  - docker ps -a
+  
+  - docker run -d -P -t dvsoftware/base
+  - docker run -d -P -t dvsoftware/web
+  - docker run -d -P -t dvsoftware/web-oro
+  
+script:
+  - docker ps -a
+
+  
