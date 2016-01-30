@@ -11,6 +11,8 @@ before_install:
   - cd base && docker build -t dvsoftware/base .
   - cd ../web && docker build -t dvsoftware/web .
   - cd ../web-oro && docker build -t dvsoftware/web-oro .
+  - cd ../sf2-prod && docker build -t dvsoftware/sf2-prod .
+  - cd ../sf2-dev && docker build -t dvsoftware/sf2-dev .
   
   - docker images
   
@@ -19,11 +21,14 @@ before_install:
   - docker run -d -P -t dvsoftware/base
   - docker run -d -P -t dvsoftware/web
   - docker run -d -P -t dvsoftware/web-oro
+  - docker run -d -P -t dvsoftware/sf2-prod
+  - docker run -d -P -t dvsoftware/sf2-dev
   
 script:
   - docker ps -a
   - docker push dvsoftware/base
   - docker push dvsoftware/web
   - docker push dvsoftware/web-oro
-
+  - docker push dvsoftware/sf2-prod
+  - docker push dvsoftware/sf2-dev
   
